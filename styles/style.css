@@ -1,0 +1,68 @@
+@font-face {
+  font-family: chango;
+  src: url('../fonts/Chango-Regular.ttf');
+}
+
+html {
+  font-family: chango;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.main-container {
+  display: grid;
+  grid-template-columns: 5% 1fr 5%;
+}
+
+.etch-container {
+  grid-column: 2/3;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+}
+
+.etch-container h1 {
+  font-size: 32px;
+  padding: 2vh 0;
+}
+
+.grid-container {
+  width: 800px;
+  height: 800px;
+  border: 1px solid;
+}
+
+.control-option {
+  display: flex;
+  flex-direction: column;
+  width: 1024px;
+}
+
+.size-option,
+.color-option {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.size-option *,
+.color-option * {
+  margin: 10px 10px;
+}
+.size-option h4 {
+  font-size: 20px;
+}
+
+.button {
+  font-size: 20px;
+  font-family: inherit;
+  width: 130px;
+  height: 30px;
+}
+
+.slider {
+  width: 200px;
+}
