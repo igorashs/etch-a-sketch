@@ -8,27 +8,36 @@
     <link rel="stylesheet" href="./styles/style.css" />
     <title>Etch-a-Sketch</title>
   </head>
-  <script src="script.js"></script>
   <body>
     <div class="main-container">
       <div class="etch-container">
         <h1>Etch-a-Sketch</h1>
-        <!-- here will be grid-container added with js -->
-        <div class="grid-container"></div>
         <div class="control-option">
           <div class="size-option">
             <h4>Size</h4>
-            <input type="range" name="size" id="gird-size" class="slider" />
-            <button class="button">Accept</button>
-            <button class="button">Clear</button>
+            <div class="slider-container">
+              <input
+                type="range"
+                name="size"
+                id="gird-size"
+                class="slider"
+                value="4"
+                min="1"
+                max="6"
+                step="1"
+              />
+            </div>
+            <button class="button new-grid-btn">Accept</button>
+            <button class="button reset-grid-btn">Clear</button>
           </div>
           <div class="color-option">
-            <button class="button">Random</button>
-            <button class="button">Black</button>
-            <button class="button">White</button>
+            <button class="button random-color-btn">Random</button>
+            <button class="button black-color-btn">Black</button>
+            <button class="button white-color-btn">Erase</button>
           </div>
         </div>
       </div>
     </div>
+    <script src="script.js"></script>
   </body>
 </html>

@@ -7,10 +7,6 @@ html {
   font-family: chango;
 }
 
-* {
-  box-sizing: border-box;
-}
-
 .main-container {
   display: grid;
   grid-template-columns: 5% 1fr 5%;
@@ -27,18 +23,23 @@ html {
 .etch-container h1 {
   font-size: 32px;
   padding: 2vh 0;
-}
-
-.grid-container {
-  width: 800px;
-  height: 800px;
-  border: 1px solid;
+  animation: appearing 1s ease;
 }
 
 .control-option {
   display: flex;
   flex-direction: column;
   width: 1024px;
+  animation: appearing 3s ease;
+}
+
+@keyframes appearing {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
 }
 
 .size-option,
@@ -65,4 +66,19 @@ html {
 
 .slider {
   width: 200px;
+}
+
+.slider-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* grid */
+.grid-container {
+  width: 512px;
+  height: 512px;
+  border: 4px solid;
+  display: grid;
+  animation: appearing 2s ease;
 }
