@@ -44,7 +44,7 @@ function makeNewGrid(count, size) {
             hslv[2] = 100;
           }
         } else {
-          if (hslv[0] != 0 && hslv[1] != 0 && hslv[2] >= 10) {
+          if (hslv[0] != 0 || (hslv[1] != 0 && hslv[2] >= 10)) {
             let currentHslV = rgbToHsl(...currentColorRGB);
             hslv[0] = currentHslV[0];
             hslv[1] = currentHslV[1];
