@@ -82,3 +82,11 @@ html {
   display: grid;
   animation: appearing 2s ease;
 }
+
+.grid-element {
+  background-color: hsl(0, 50%, 100%);
+}
+
+body {
+  background-color: blueviolet;
+}
