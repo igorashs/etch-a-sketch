@@ -24,16 +24,24 @@ function makeNewGrid(count, size) {
 
   gridContainer.addEventListener('mouseover', (e) => {
     if (!e.target.classList.contains('grid-container')) {
+      let currentColorRGB = currentColor.match(REGX_RGB);
       let rgb = e.target.style.backgroundColor.match(REGX_RGB);
-      let hslv = rgbToHsl(...rgb);
-      if (hslv[2] >= 10) hslv[2] -= 10;
-      let hsl = `hsl(${hslv[0]}, ${hslv[1]}%, ${hslv[2]}%)`;
-      e.target.style.backgroundColor = hsl;
+
+      // TODO make currentColor to work
+      if (rgb.join() == WHITE.match(REGX_RGB).join()) {
+        // let hslv = rgbToHsl(...currentColorRGB);
+        // hslv[2] = 90;
+        // let hsl = `hsl(${hslv[0]}, ${hslv[1]}%, ${hslv[2]}%)`;
+        // e.target.style.backgroundColor = hsl;
+      } else {
+        let hslv = rgbToHsl(...rgb);
+        if (hslv[2] >= 10) hslv[2] -= 10;
+        let hsl = `hsl(${hslv[0]}, ${hslv[1]}%, ${hslv[2]}%)`;
+        e.target.style.backgroundColor = hsl;
+      }
     }
   });
 }
-
-function resetGrid() {}
 
 function selectRandom() {}
 
@@ -43,6 +51,8 @@ function selectWhite() {}
 
 const makeNewGridBtn = document.querySelector('.new-grid-btn');
 const resetGridBtn = document.querySelector('.reset-grid-btn');
+const blackColorBtn = document.querySelector('.black-color-btn');
+const whiteColorBtn = document.querySelector('.white-color-btn');
 
 makeNewGridBtn.addEventListener('click', (e) => {
   elementsCount = 2 ** +document.getElementById('gird-size').value;
@@ -53,8 +63,16 @@ resetGridBtn.addEventListener('click', (e) => {
   makeNewGrid(elementsCount, GRID_SIZE);
 });
 
-const WHITE = 'hsl(0, 50%, 100%)';
-const BLACK = 'hsl(0, 0%, 90%)';
+blackColorBtn.addEventListener('click', (e) => {
+  currentColor = BLACK;
+});
+
+whiteColorBtn.addEventListener('click', (e) => {
+  currentColor = WHITE;
+});
+
+const WHITE = 'rgb(255, 255, 255)'; //'hsl(0, 50%, 100%)';
+const BLACK = 'rgb(0, 0, 0)'; //'hsl(0, 0%, 90%)';
 const REGX_RGB = /\d+/g;
 
 const GRID_SIZE = 512;
