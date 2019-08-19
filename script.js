@@ -36,12 +36,27 @@ function makeNewGrid(count, size) {
         e.target.style.backgroundColor = hsl;
       } else {
         let hslv = rgbToHsl(...rgb);
+        if (randomColor) {
+          if (hslv[0] == 0 && hslv[1] == 0 && hslv[2] >= 10) {
+            let currentHslV = rgbToHsl(...currentColorRGB);
+            hslv[0] = currentHslV[0];
+            hslv[1] = currentHslV[1];
+            hslv[2] = 100;
+          }
+        } else {
+          if (hslv[0] != 0 && hslv[1] != 0 && hslv[2] >= 10) {
+            let currentHslV = rgbToHsl(...currentColorRGB);
+            hslv[0] = currentHslV[0];
+            hslv[1] = currentHslV[1];
+            hslv[2] = 100;
+          }
+        }
 
         if (!erase && hslv[2] >= 10) {
           hslv[2] -= 10;
         }
         if (erase && hslv[2] <= 90) {
-          hslv[2] += 10;
+          hslv[2] = 100;
         }
 
         let hsl = `hsl(${hslv[0]}, ${hslv[1]}%, ${hslv[2]}%)`;
