@@ -42,10 +42,15 @@ function selectBlack() {}
 function selectWhite() {}
 
 const makeNewGridBtn = document.querySelector('.new-grid-btn');
+const resetGridBtn = document.querySelector('.reset-grid-btn');
 
 makeNewGridBtn.addEventListener('click', (e) => {
-  const currentCount = 2 ** +document.getElementById('gird-size').value;
-  makeNewGrid(currentCount, GRID_SIZE);
+  elementsCount = 2 ** +document.getElementById('gird-size').value;
+  makeNewGrid(elementsCount, GRID_SIZE);
+});
+
+resetGridBtn.addEventListener('click', (e) => {
+  makeNewGrid(elementsCount, GRID_SIZE);
 });
 
 const WHITE = 'hsl(0, 50%, 100%)';
