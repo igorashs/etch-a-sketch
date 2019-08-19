@@ -24,18 +24,26 @@ function makeNewGrid(count, size) {
 
   gridContainer.addEventListener('mouseover', (e) => {
     if (!e.target.classList.contains('grid-container')) {
+      if (randomColor) currentColor = giveRandomRGBColor();
+
       let currentColorRGB = currentColor.match(REGX_RGB);
       let rgb = e.target.style.backgroundColor.match(REGX_RGB);
 
-      // TODO make currentColor to work
-      if (rgb.join() == WHITE.match(REGX_RGB).join()) {
-        // let hslv = rgbToHsl(...currentColorRGB);
-        // hslv[2] = 90;
-        // let hsl = `hsl(${hslv[0]}, ${hslv[1]}%, ${hslv[2]}%)`;
-        // e.target.style.backgroundColor = hsl;
+      if (rgb.join() == WHITE.match(REGX_RGB).join() && !erase) {
+        let hslv = rgbToHsl(...currentColorRGB);
+        hslv[2] = 90;
+        let hsl = `hsl(${hslv[0]}, ${hslv[1]}%, ${hslv[2]}%)`;
+        e.target.style.backgroundColor = hsl;
       } else {
         let hslv = rgbToHsl(...rgb);
-        if (hslv[2] >= 10) hslv[2] -= 10;
+
+        if (!erase && hslv[2] >= 10) {
+          hslv[2] -= 10;
+        }
+        if (erase && hslv[2] <= 90) {
+          hslv[2] += 10;
+        }
+
         let hsl = `hsl(${hslv[0]}, ${hslv[1]}%, ${hslv[2]}%)`;
         e.target.style.backgroundColor = hsl;
       }
@@ -43,16 +51,11 @@ function makeNewGrid(count, size) {
   });
 }
 
-function selectRandom() {}
-
-function selectBlack() {}
-
-function selectWhite() {}
-
 const makeNewGridBtn = document.querySelector('.new-grid-btn');
 const resetGridBtn = document.querySelector('.reset-grid-btn');
 const blackColorBtn = document.querySelector('.black-color-btn');
 const whiteColorBtn = document.querySelector('.white-color-btn');
+const randomColorBtn = document.querySelector('.random-color-btn');
 
 makeNewGridBtn.addEventListener('click', (e) => {
   elementsCount = 2 ** +document.getElementById('gird-size').value;
@@ -64,19 +67,29 @@ resetGridBtn.addEventListener('click', (e) => {
 });
 
 blackColorBtn.addEventListener('click', (e) => {
+  erase = false;
+  randomColor = false;
   currentColor = BLACK;
 });
 
 whiteColorBtn.addEventListener('click', (e) => {
-  currentColor = WHITE;
+  erase = true;
+});
+
+randomColorBtn.addEventListener('click', (e) => {
+  randomColor = true;
+  erase = false;
 });
 
 const WHITE = 'rgb(255, 255, 255)'; //'hsl(0, 50%, 100%)';
 const BLACK = 'rgb(0, 0, 0)'; //'hsl(0, 0%, 90%)';
 const REGX_RGB = /\d+/g;
 
+let erase = false;
+
 const GRID_SIZE = 512;
 let elementsCount = 16;
+let randomColor = false;
 
 let currentColor = BLACK;
 
@@ -116,4 +129,11 @@ function rgbToHsl(r, g, b) {
   }
 
   return [+(h * 360).toFixed(), +(s * 100).toFixed(), +(l * 100).toFixed()];
+}
+
+function giveRandomRGBColor() {
+  let r = Math.floor(Math.random() * Math.floor(256));
+  let g = Math.floor(Math.random() * Math.floor(256));
+  let b = Math.floor(Math.random() * Math.floor(256));
+  return `rgb(${r}, ${g}, ${b})`;
 }
