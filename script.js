@@ -15,6 +15,7 @@ function makeNewGrid(count, size) {
 
   for (let i = 0; i < count * count; i++) {
     let element = document.createElement('div');
+    if (count != 64) element.classList.add('grid-element');
     element.style.backgroundColor = WHITE;
     gridContainer.appendChild(element);
   }
