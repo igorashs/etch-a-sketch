@@ -1,6 +1,6 @@
 # Etch-a-Sketch
 
-## From The Odin Project's [curriculum](https://www.theodinproject.com/lessons/etch-a-sketch-project)
+> ## From The Odin Project's [curriculum](https://www.theodinproject.com/lessons/etch-a-sketch-project)
 
 > - [Live demo](https://igorashs.github.io/etch-a-sketch/) :shipit:
 
